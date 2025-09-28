@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "candidate-1",
+      "description": "Portrait of Candidate 1",
+      "imageUrl": "https://picsum.photos/seed/candidate1/400/400",
+      "imageHint": "student portrait"
+    },
+    {
+      "id": "candidate-2",
+      "description": "Portrait of Candidate 2",
+      "imageUrl": "https://picsum.photos/seed/candidate2/400/400",
+      "imageHint": "student portrait"
+    },
+    {
+      "id": "candidate-3",
+      "description": "Portrait of Candidate 3",
+      "imageUrl": "https://picsum.photos/seed/candidate3/400/400",
+      "imageHint": "student portrait"
+    }
+  ]
+}

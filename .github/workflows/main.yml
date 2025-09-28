@@ -1,0 +1,45 @@
+# Nama alur kerja (workflow) yang akan muncul di tab Actions di GitHub
+name: Build, Test, and Deploy Next.js App
+
+# Menentukan kapan alur kerja ini akan dijalankan
+on:
+  # Alur kerja akan berjalan setiap kali ada 'push' ke branch 'main'
+  push:
+    branches:
+      - main
+
+# Daftar pekerjaan (jobs) yang akan dieksekusi
+jobs:
+  build-and-deploy:
+    # Menentukan jenis mesin virtual yang akan digunakan
+    runs-on: ubuntu-latest
+
+    # Langkah-langkah (steps) yang akan dijalankan dalam pekerjaan ini
+    steps:
+      # 1. Mengunduh (checkout) kode dari repositori Anda
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Mengatur versi Node.js yang akan digunakan (versi 20)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Menginstal semua dependensi proyek yang ada di package.json
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Menjalankan proses build untuk aplikasi Next.js
+      - name: Build project
+        run: npm run build
+
+      # 5. Mendorong (push) perubahan kembali ke GitHub
+      # Langkah ini berguna jika proses build menghasilkan file baru atau perubahan
+      - name: Push to GitHub
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Automated build and commit by GitHub Actions" || echo "No changes to commit"
+          git push
